@@ -1,29 +1,23 @@
 import Unsplash from 'unsplash-js';
 
-import logo from './logo.svg';
 import './App.css';
-
+import 'antd/dist/antd.css';
+import { ACCESS_KEY } from './constants';
+import SearchBar from './components/SearchBar';
+import Grid from './components/Grid';
+import Footer from './components/Footer';
 // TODO: Replace "APP_ACCESS_KEY" with your own key, which
 // can be generated here: https://unsplash.com/developers
-const unsplash = new Unsplash({ accessKey: 'APP_ACCESS_KEY' });
+const unsplash = new Unsplash({
+  accessKey: ACCESS_KEY,
+});
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchBar />
+      <Grid />
+      <Footer />
     </div>
   );
 }
