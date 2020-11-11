@@ -11,6 +11,7 @@ import { setPageNumber, setTotal } from '../Footer/paginationSlice';
 import { Input, Modal } from 'antd';
 import { SearchOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import './index.css';
+import { scrollToTop } from '../utils';
 const { confirm } = Modal;
 
 const SearchBar = () => {
@@ -32,6 +33,7 @@ const SearchBar = () => {
     if (!inputText) return;
     dispatch(setPageNumber(1));
     await dispatch(fetchImgs());
+    scrollToTop();
   };
 
   const onChange = (e) => {

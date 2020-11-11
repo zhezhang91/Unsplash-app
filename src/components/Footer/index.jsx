@@ -9,6 +9,7 @@ import {
   selectTotal,
 } from './paginationSlice';
 import { fetchImgs } from '../SearchBar/searchSlice';
+import { scrollToTop } from '../utils';
 
 const Footer = () => {
   const currentPageNumber = useSelector(selectPageNumber);
@@ -25,6 +26,7 @@ const Footer = () => {
       dispatch(setPageSize(pageSize));
     }
     await dispatch(fetchImgs());
+    scrollToTop();
   };
 
   return (
