@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Card, Modal } from 'antd';
-
 import { ZoomInOutlined, DownloadOutlined } from '@ant-design/icons';
-import { downloadImgAPI } from '../../modules/unsplashAPI';
+
 const { Meta } = Card;
 
-const ImgCard = ({ img, loading }) => {
+const ImgCard = ({ img }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { alt_description, id, urls } = img;
+  const { alt_description, urls } = img;
   const { thumb, regular, full } = urls;
 
   const handleZoom = () => setModalVisible(true);
@@ -32,13 +31,28 @@ const ImgCard = ({ img, loading }) => {
   };
   return (
     <Card
-      loading={loading}
       hoverable
       style={{ width: 240, marginTop: 16, height: 400 }}
-      cover={<img src={thumb} height={300} onClick={handleZoom} />}
+      cover={
+        <img
+          src={thumb}
+          height={300}
+          onClick={handleZoom}
+          alt="cover"
+          data-testid="coverImg"
+        />
+      }
       actions={[
-        <ZoomInOutlined key="like" onClick={handleZoom} />,
-        <DownloadOutlined key="download" onClick={handleDownload} />,
+        <ZoomInOutlined
+          key="like"
+          onClick={handleZoom}
+          data-testid="zoomButton"
+        />,
+        <DownloadOutlined
+          key="download"
+          onClick={handleDownload}
+          data-testid="downloadButton"
+        />,
       ]}
     >
       {' '}
@@ -50,6 +64,7 @@ const ImgCard = ({ img, loading }) => {
         onCancel={handleOk}
       >
         <img
+          alt="zoomIn"
           src={regular}
           width={480}
           height={640}

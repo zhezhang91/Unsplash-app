@@ -34,11 +34,13 @@ export const fetchImgs = () => async (dispatch, getState) => {
   const state = getState();
   const { search, pagination } = state;
   const { imgName } = search;
+  dispatch(setSearching(true));
   if (!imgName) return;
   const res = await fetchImgsAPI(imgName, pagination);
-  const { results, total_pages, total } = res;
-  dispatch(setImgs(res.results));
+  const { results, total } = res;
+  dispatch(setImgs(results));
   dispatch(setTotal(total));
+  dispatch(setSearching(false));
 };
 
 export default searchSlice.reducer;

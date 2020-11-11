@@ -11,12 +11,3 @@ export const fetchImgsAPI = async (imgName, { pageNumber, pageSize }) =>
       orientation: 'portrait',
     })
     .then(toJson);
-
-export const downloadImgAPI = async (imgId) =>
-  await unsplash.photos
-    .getPhoto(imgId)
-    .then(toJson)
-    .then((json) => {
-      console.log(json);
-      unsplash.photos.downloadPhoto(json);
-    });
